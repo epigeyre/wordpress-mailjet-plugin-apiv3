@@ -38,6 +38,11 @@ class ContactForm7Settings
         $mailjetCheckbox = $formdata[self::MAILJET_CHECKBOX];
         if ($mailjetCheckbox != '') {
             $cf7_email = trim(get_option('cf7_email'), '[]');
+
+            // If email in our settings does not match cf7 properties(user responsibility)
+            if(!array_key_exists($cf7_email, $formdata)) {
+                return false;
+            }
             $email = $formdata[$cf7_email];
 
             $cf7name = get_option('cf7_fromname', '');
