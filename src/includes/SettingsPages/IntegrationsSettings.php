@@ -95,6 +95,10 @@ class IntegrationsSettings
 //        $mailjetCF7SyncActivated = get_option('activate_mailjet_cf7_sync');
 
         $isCF7Installed = class_exists('WPCF7') ? true : false;
+        if(!$isCF7Installed && $mailjetCF7IntegrationActivated) {
+            $mailjetCF7IntegrationActivated = 0;
+            update_option('activate_mailjet_cf7_integration', $mailjetCF7IntegrationActivated);
+        }
         ?>
         <fieldset class="settingsSubscrFldset">
                 <legend style="font-weight: bold; padding: 10px 10px 10px 0;"><?php  _e('Contact Form 7', 'mailjet-for-wordpress'); ?></legend>
